@@ -5,6 +5,7 @@ using static Define;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameManager gameManager;
     public Grid _grid;
     public float _speed = 5.0f;
 
@@ -84,11 +85,14 @@ public class PlayerController : MonoBehaviour
     {
         //Scan Object
         if (Input.GetButtonDown("Jump") && scanObject != null)
-            Debug.Log($"{scanObject.name}");
+            gameManager.Action(scanObject);
     }
 
     private void GetDirInput()
     {
+        if (gameManager.isAction == true)
+            return;
+
         if (Input.GetKey(KeyCode.UpArrow))
         {
             Dir = MoveDir.Up;
