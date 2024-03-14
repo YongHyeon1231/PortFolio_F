@@ -8,4 +8,17 @@
         Left,
         Right,
     }
+
+    public enum CameraMode
+    {
+        QuarterView,
+    }
+
+    public enum Scene
+    {
+        Unknown,
+        Login,
+        Lobby,
+        Game,
+    }
 }
