@@ -12,8 +12,10 @@ public class Managers : MonoBehaviour
 
     #region Contents
     MapManager _map = new MapManager();
+    TalkManager _talk = new TalkManager();
 
     public static MapManager Map { get { return Instance._map; } }
+    public static TalkManager Talk { get { return Instance._talk; } }
     #endregion
 
     #region Core
@@ -46,6 +48,7 @@ public class Managers : MonoBehaviour
             s_instance = go.GetComponent<Managers>();
 
             s_instance._pool.Init();
+            s_instance._talk.Init();
         }
     }
 
