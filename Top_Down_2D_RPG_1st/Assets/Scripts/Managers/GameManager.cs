@@ -15,6 +15,11 @@ public class GameManager : MonoBehaviour
     public bool isAction;
     public int talkIndex;
 
+    private void Start()
+    {
+        Debug.Log(Managers.Quest.CheckQuest());
+    }
+
     public void Action(GameObject scanObj)
     {
         if (scanObj == null) return;
@@ -29,15 +34,22 @@ public class GameManager : MonoBehaviour
 
     void Talk(int id, bool isNpc)
     {
-        string talkData = Managers.Talk.GetTalk(id, talkIndex);
+        //Set Talk Data
+        int questTalkIndex = Managers.Quest.GetQuestTalkIndex(id);
+        string talkData = Managers.Talk.GetTalk(id + questTalkIndex, talkIndex);
 
-        if( talkData == null)
+        //End Talk
+        if(talkData == null)
         {
             isAction = false;
             talkIndex = 0;
+            string questName = Managers.Quest.CheckQuest(id);
+            Managers.Quest.MakeQuestObjects(questName);
+            Debug.Log(questName);
             return;
         }
         
+        //Continue Talk
         if (isNpc)
         {
             talkText.text = talkData.Split(':')[0];

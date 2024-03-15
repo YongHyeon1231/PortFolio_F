@@ -12,9 +12,11 @@ public class Managers : MonoBehaviour
 
     #region Contents
     MapManager _map = new MapManager();
+    QuestManager _quest = new QuestManager();
     TalkManager _talk = new TalkManager();
 
     public static MapManager Map { get { return Instance._map; } }
+    public static QuestManager Quest { get { return Instance._quest; } }
     public static TalkManager Talk { get { return Instance._talk; } }
     #endregion
 
@@ -49,6 +51,7 @@ public class Managers : MonoBehaviour
 
             s_instance._pool.Init();
             s_instance._talk.Init();
+            s_instance._quest.Init();
         }
     }
 
