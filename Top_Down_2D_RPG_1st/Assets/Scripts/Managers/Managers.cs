@@ -14,20 +14,24 @@ public class Managers : MonoBehaviour
     MapManager _map = new MapManager();
     QuestManager _quest = new QuestManager();
     TalkManager _talk = new TalkManager();
+    GameManager _game = new GameManager();
 
     public static MapManager Map { get { return Instance._map; } }
     public static QuestManager Quest { get { return Instance._quest; } }
     public static TalkManager Talk { get { return Instance._talk; } }
+    public static GameManager Game { get { return Instance._game; } }
     #endregion
 
     #region Core
     PoolManager _pool = new PoolManager();
     ResourceManager _resource = new ResourceManager();
     SceneManagerEx _scene = new SceneManagerEx();
+    UIManager _ui = new UIManager();
 
     public static PoolManager Pool { get { return Instance._pool; } }
     public static ResourceManager Resource { get { return Instance._resource; } }
     public static SceneManagerEx Scene { get { return Instance._scene; } }
+    public static UIManager UI { get { return Instance._ui; } }
     #endregion
 
     void Start()
@@ -59,6 +63,7 @@ public class Managers : MonoBehaviour
     {
         Scene.Clear();
         Pool.Clear();
+        UI.Clear();
     }
 }
 
