@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: YongHyeonPark
   productName: Top_Down_2D_RPG_1st
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}

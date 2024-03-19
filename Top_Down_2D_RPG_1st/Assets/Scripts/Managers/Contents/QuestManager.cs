@@ -75,14 +75,16 @@ public class QuestManager
         questActionIndex = 0;
     }
 
-    private void ControlObject()
+    public void ControlObject()
     {
         switch (questId)
         {
             case 10:
                 break;
             case 20:
-                if (questActionIndex == 1)
+                if (questActionIndex == 0)
+                    questObject[0].SetActive(true);
+                else if (questActionIndex == 1)
                     questObject[0].SetActive(false);
                 break;
         }

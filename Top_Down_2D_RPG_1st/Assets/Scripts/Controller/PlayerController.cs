@@ -13,6 +13,11 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
     private Rigidbody2D _rigid;
     private Vector3Int _cellPos = Vector3Int.zero;
+    public Vector3Int CellPos
+    {
+        get { return _cellPos; }
+        set { _cellPos = value; }
+    }
     private bool _isMoving = false;
     private Vector3 dirVec;
     private GameObject scanObject;
@@ -61,14 +66,20 @@ public class PlayerController : MonoBehaviour
             _dir = value;
         }
     }
+    private void Awake()
+    {
+        if (!PlayerPrefs.HasKey("PlayerX"))
+        {
+            Vector3 pos = _grid.CellToWorld(_cellPos) + new Vector3(0.5f, 0.5f, 0);
+            transform.position = pos;
+        }
+    }
 
     private void Start()
     {
         // 나중에 정보 긁어서 내 위치 바꿔주기.
         _rigid = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
-        Vector3 pos = _grid.CellToWorld(_cellPos) + new Vector3(0.5f, 0.5f, 0);
-        transform.position = pos;
     }
 
     private void Update()
