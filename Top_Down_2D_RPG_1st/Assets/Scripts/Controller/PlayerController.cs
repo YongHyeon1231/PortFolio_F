@@ -66,6 +66,12 @@ public class PlayerController : MonoBehaviour
             _dir = value;
         }
     }
+
+    int right_Value;
+    int left_Value;
+    int down_Value;
+    int up_Value;
+    
     private void Awake()
     {
         if (!PlayerPrefs.HasKey("PlayerX"))
@@ -104,19 +110,19 @@ public class PlayerController : MonoBehaviour
         if (gameManager.isAction == true)
             return;
 
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow) || (up_Value + down_Value == 1))
         {
             Dir = MoveDir.Up;
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.DownArrow) || (up_Value + down_Value == -1))
         {
             Dir = MoveDir.Down;
         }
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.LeftArrow) || (left_Value + right_Value == -1))
         {
             Dir = MoveDir.Left;
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.RightArrow) || (left_Value + right_Value == 1))
         {
             Dir = MoveDir.Right;
         }
@@ -196,6 +202,51 @@ public class PlayerController : MonoBehaviour
         else
         {
             scanObject = null;
+        }
+    }
+
+    public void ButtonDown(string type)
+    {
+        switch(type)
+        {
+            case "U":
+                up_Value = 1;
+                break;
+            case "D":
+                down_Value = -1;
+                break;
+            case "L":
+                left_Value = -1;
+                break;
+            case "R":
+                right_Value = 1;
+                break;
+            case "A":
+                if (scanObject != null)
+                    gameManager.Action(scanObject);
+                break;
+            case "C":
+                Managers.Game.SubMenuActive();
+                break;
+        }
+    }
+
+    public void ButtonUp(string type)
+    {
+        switch (type)
+        {
+            case "U":
+                up_Value = 0;
+                break;
+            case "D":
+                down_Value = 0;
+                break;
+            case "L":
+                left_Value = 0;
+                break;
+            case "R":
+                right_Value = 0;
+                break;
         }
     }
 

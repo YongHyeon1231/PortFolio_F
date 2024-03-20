@@ -37,6 +37,7 @@ public class Managers : MonoBehaviour
     void Start()
     {
         Init();
+        _game = Util.GetOrAddComponent<GameManager>(GameObject.Find("GameManager"));
     }
 
     static void Init()
